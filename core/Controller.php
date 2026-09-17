@@ -19,4 +19,25 @@ extract ($data);
             die("Error: View file not found: " . $file);
         }
     }
+      /**
+     * Redirect to another URL.
+     * 
+     * @param string $url Target URL
+     * @return void
+     */
+    protected function redirect($url) {
+        header("Location: " . $url);
+        exit;
+    }
+    
+    /**
+     * Ensure user is logged in, otherwise redirect to login.
+     * 
+     * @return void
+     */
+    protected function requireLogin() {
+        if (!isset($_SESSION['user_id'])) {
+            $this->redirect('/alzikrayat/public/login');
+        }
+    }
 }
