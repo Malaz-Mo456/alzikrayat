@@ -27,12 +27,14 @@ return true;
      *
      * @return array
      */
-public  function getAll(){
-    $sql= "SELECT * FROM photos ORDER BY date_time DESC";
-$statement = $this->db->prepare($sql);
-$statement->execute();
-return $statement->fetchAll();
-}
+  public function getAll() {
+        $sql = "SELECT p.*, u.first_name 
+                FROM photos p 
+                JOIN users u ON p.user_id = u.id 
+                ORDER BY p.date_time DESC";
+        $statement = $this->db->query($sql);
+        return $statement->fetchAll();
+    }
 /**
      * Finds one photo by its ID.
      *
@@ -40,7 +42,10 @@ return $statement->fetchAll();
      * @return array|false
      */
 public function findById($id){
-$sql= "SELECT * FROM photos WHERE (id=?)";
+  $sql = "SELECT p.*, u.first_name 
+                FROM photos p 
+                JOIN users u ON p.user_id = u.id 
+                WHERE p.id = ?";
 $statement = $this->db->prepare($sql);
 $statement->execute([$id]);
 return $statement->fetch();
@@ -67,8 +72,8 @@ return $statement->fetchAll();
 public function delete($id){
 $sql= "DELETE FROM photos WHERE (id=?)";
 $statement = $this->db->prepare($sql);
-$statement->execute([$id]);
-return true;
+return $statement->execute([$id]);
+ 
 
 }
 }
