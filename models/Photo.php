@@ -28,7 +28,7 @@ return true;
      * @return array
      */
   public function getAll() {
-        $sql = "SELECT p.*, u.first_name 
+        $sql = "SELECT p.*, u.first_name ,u.last_name
                 FROM photos p 
                 JOIN users u ON p.user_id = u.id 
                 ORDER BY p.date_time DESC";
@@ -42,7 +42,7 @@ return true;
      * @return array|false
      */
 public function findById($id){
-  $sql = "SELECT p.*, u.first_name 
+  $sql = "SELECT p.*, u.first_name ,u.last_name
                 FROM photos p 
                 JOIN users u ON p.user_id = u.id 
                 WHERE p.id = ?";

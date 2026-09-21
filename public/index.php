@@ -1,10 +1,40 @@
 <?php
+/**
+ * Application Entry Point
+ * 
+ * All requests are routed through this single file.
+ * 
+ * @author  [Your Name]
+ * @version 1.0
+ */
 
-require_once __DIR__ . '/../core/Router.php';
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
+
+define('BASE_PATH', dirname(__DIR__));
+
+require_once BASE_PATH . '/config/database.php';
+require_once BASE_PATH . '/core/Model.php';
+require_once BASE_PATH . '/core/Controller.php';
+require_once BASE_PATH . '/core/Router.php';
 
 $router = new Router();
 
-$router->add('GET', '/index.php', ['TestController', 'index']);
-$router->add('GET', '/index.php/{id}', ['TestController', 'show']);
+// Photos
+$router->add('GET', '/photos', ['PhotoController', 'index']);
+$router->add('GET', '/photos/{id}', ['PhotoController', 'show']);
+$router->add('GET', '/photo/create', ['PhotoController', 'create']);
+$router->add('POST', '/photo/store', ['PhotoController', 'store']);
+$router->add('GET', '/photo/{id}/delete', ['PhotoController', 'delete']);
+//Comments
+$router->add('POST', '/comment/store', ['CommentController', 'store']);
+// Auth
+$router->add('GET',  '/register', ['AuthController', 'registerForm']);
+$router->add('POST', '/register', ['AuthController', 'register']);
+$router->add('GET',  '/login',    ['AuthController', 'loginForm']);
+$router->add('POST', '/login',    ['AuthController', 'login']);
+$router->add('GET',  '/logout',   ['AuthController', 'logout']);
 
 $router->dispatch();

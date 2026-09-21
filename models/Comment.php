@@ -1,12 +1,19 @@
 <?php
-
+/**
+ * Handles All database operations for comments.
+ */
 require_once __DIR__ . '/../core/Model.php';
 
-/**
- * Handles database operations for comments.
- */
+
 class Comment extends Model{
-  	
+  	 /**
+     * Create a new comment.
+     * 
+     * @param int    $photo_id Photo ID
+     * @param int    $user_id  User ID
+     * @param string $comment  Comment text
+     * @return bool
+     */
 
     public  function create($photo_id,$user_id,$comment){
 $sql = "INSERT INTO comments (photo_id,user_id,comment) VALUES (?, ?, ?)"; 
@@ -33,6 +40,12 @@ $statement = $this->db->prepare($sql);
 $statement->execute([$photo_id]);
 return $statement->fetchAll();
 }
+ /**
+     * Delete a comment by ID.
+     * 
+     * @param int $id
+     * @return bool
+     */
 public function delete($id){
     $sql= "DELETE FROM comments WHERE (id=?)";
 $statement = $this->db->prepare($sql);
