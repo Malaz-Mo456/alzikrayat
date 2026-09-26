@@ -15,12 +15,29 @@ class Photo extends Model{
      * @param string|null $description
      * @return bool
      */
-public  function create( $user_id,$file_name ,$title ,$description =null){
-$sql = "INSERT INTO photos (user_id, file_name, title, description) VALUES (?, ?, ?, ?)"; 
-$statement = $this->db->prepare($sql);
-$statement->execute([ $user_id,$file_name ,$title ,$description ]);
-return true;
+/**
+ * Creates a new photo.
+ *
+ * @param int $user_id
+ * @param string $file_name
+ * @param string $title
+ * @param string|null $description
+ * @return int
+ */
+public function create($user_id, $file_name, $title, $description = null)
+{
+    $sql = "INSERT INTO photos (user_id, file_name, title, description)
+            VALUES (?, ?, ?, ?)";
 
+    $statement = $this->db->prepare($sql);
+    $statement->execute([
+        $user_id,
+        $file_name,
+        $title,
+        $description
+    ]);
+
+    return (int) $this->db->lastInsertId();
 }
   /**
      * Gets all photos from the database.
@@ -75,5 +92,42 @@ $statement = $this->db->prepare($sql);
 return $statement->execute([$id]);
  
 
+}
+/**
+ * Gets the number of photos.
+ *
+ * @return int
+ */
+public function getCount()
+{
+    $sql = "SELECT COUNT(*) FROM photos";
+
+    $statement = $this->db->prepare($sql);
+    $statement->execute();
+
+    return (int) $statement->fetchColumn();
+}
+/**
+ * Gets the latest photos with the uploader name.
+ *
+ * @param int $limit Number of photos to return.
+ * @return array
+ */
+public function getRecent($limit = 6)
+{
+    $sql = "SELECT 
+                p.*,
+                u.first_name,
+                u.last_name
+            FROM photos p
+            JOIN users u ON p.user_id = u.id
+            ORDER BY p.date_time DESC
+            LIMIT ?";
+
+    $statement = $this->db->prepare($sql);
+    $statement->bindValue(1, (int) $limit, PDO::PARAM_INT);
+    $statement->execute();
+
+    return $statement->fetchAll();
 }
 }

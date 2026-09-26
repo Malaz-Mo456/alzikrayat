@@ -4,7 +4,7 @@
  * 
  * All requests are routed through this single file.
  * 
- * @author  [Your Name]
+ * @author  Malaz Mohamed Ahmed Mohamed
  * @version 1.0
  */
 
@@ -24,12 +24,18 @@ $router = new Router();
 
 // Photos
 $router->add('GET', '/photos', ['PhotoController', 'index']);
-$router->add('GET', '/photos/{id}', ['PhotoController', 'show']);
 $router->add('GET', '/photo/create', ['PhotoController', 'create']);
+$router->add('GET', '/photo/{id}', ['PhotoController', 'show']);
+
 $router->add('POST', '/photo/store', ['PhotoController', 'store']);
 $router->add('GET', '/photo/{id}/delete', ['PhotoController', 'delete']);
 //Comments
 $router->add('POST', '/comment/store', ['CommentController', 'store']);
+// Likes
+$router->add('POST', '/photo/{id}/like', ['LikeController', 'toggle']);
+// Home
+$router->add('GET', '/', ['HomeController', 'index']);
+$router->add('GET', '/about', ['HomeController', 'about']);
 // Auth
 $router->add('GET',  '/register', ['AuthController', 'registerForm']);
 $router->add('POST', '/register', ['AuthController', 'register']);

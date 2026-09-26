@@ -49,7 +49,34 @@ $statement->execute([$id]);
 return $statement->fetch();
 }
 
+/**
+ * Gets the number of registered users.
+ *
+ * @return int
+ */
+public function getCount()
+{
+    $sql = "SELECT COUNT(*) FROM users";
 
+    $statement = $this->db->prepare($sql);
+    $statement->execute();
 
+    return (int) $statement->fetchColumn();
+}
+
+/**
+ * Gets all users.
+ *
+ * @return array
+ */
+public function getAll()
+{
+    $sql = "SELECT id, first_name, last_name FROM users";
+
+    $statement = $this->db->prepare($sql);
+    $statement->execute();
+
+    return $statement->fetchAll();
+}
 }
 	
