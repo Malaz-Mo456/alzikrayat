@@ -1,0 +1,471 @@
+/* home page styles */
+
+
+/* Hero section */
+.hero {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('/alzikrayat/public/images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, 0.88),
+        rgba(5, 150, 105, 0.45)
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    padding: 40px 20px;
+}
+
+.hero-tag {
+    display: inline-block;
+    color: #6ee7b7;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(55px, 9vw, 100px);
+    line-height: 1;
+    margin: 0 0 20px;
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: 19px;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-hero-primary,
+.btn-hero-outline {
+    padding: 12px 25px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-hero-primary {
+    background: #10b981;
+    color: #fff;
+}
+
+.btn-hero-primary:hover {
+    background: #059669;
+    color: #fff;
+}
+
+.btn-hero-outline {
+    border: 1px solid rgba(255,255,255,0.6);
+    color: #fff;
+}
+
+.btn-hero-outline:hover {
+    background: #fff;
+    color: #0f172a;
+}
+
+.hero-info {
+    margin-top: 25px;
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+}
+
+.hero-scroll {
+    position: absolute;
+    bottom: 20px;
+    color: #fff;
+    font-size: 30px;
+}
+
+
+/* Stats bar */
+.stats-bar {
+    max-width: 1000px;
+    margin: -45px auto 0;
+    position: relative;
+    z-index: 3;
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 15px 40px rgba(15,23,42,0.12);
+}
+
+.stat {
+    text-align: center;
+    min-width: 120px;
+}
+
+.stat-number {
+    font-size: 30px;
+    font-weight: 700;
+    color: #059669;
+}
+
+.stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #334155;
+}
+
+.stat-sub {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 3px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 55px;
+    background: #e2e8f0;
+}
+
+
+/* Latest memories */
+.memories-section {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 24px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 30px;
+}
+
+.section-tag {
+    color: #059669;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    margin: 8px 0 0;
+}
+
+.view-all {
+    color: #059669;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.memories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.memory-card {
+    position: relative;
+    height: 330px;
+    overflow: hidden;
+    border-radius: 16px;
+    text-decoration: none;
+    background: #e2e8f0;
+}
+
+.memory-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+
+.memory-card:hover img {
+    transform: scale(1.05);
+}
+
+.memory-overlay {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 45px 20px 20px;
+    color: #fff;
+    background: linear-gradient(
+        transparent,
+        rgba(15,23,42,0.9)
+    );
+}
+
+.memory-title {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.memory-author {
+    font-size: 13px;
+    color: #cbd5e1;
+    margin-top: 4px;
+}
+
+
+/* Empty state */
+.empty-memories {
+    text-align: center;
+    padding: 70px 20px;
+    background: #fff;
+    border-radius: 16px;
+}
+
+.empty-emoji {
+    font-size: 50px;
+}
+
+.empty-memories h3 {
+    margin-top: 15px;
+}
+
+.empty-memories p {
+    color: #64748b;
+}
+
+.btn-emerald {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 11px 22px;
+    border-radius: 999px;
+    background: #059669;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-emerald:hover {
+    background: #047857;
+    color: #fff;
+}
+
+
+/* Quote band */
+.quote-band {
+    background: #0f172a;
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.quote-mark {
+    color: #10b981;
+    font-size: 60px;
+    line-height: 1;
+}
+
+.quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.quote-dots {
+    color: #10b981;
+    letter-spacing: 6px;
+}
+
+
+/* About teaser */
+.about-teaser {
+    max-width: 1100px;
+    margin: 100px auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.about-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    line-height: 1.1;
+    margin: 10px 0 20px;
+}
+
+.about-title em,
+.cta-title em {
+    color: #059669;
+}
+
+.about-desc {
+    color: #64748b;
+    line-height: 1.8;
+}
+
+
+/* Polaroid images */
+.about-visual {
+    position: relative;
+    height: 330px;
+}
+
+.polaroid {
+    position: absolute;
+    background: #fff;
+    padding: 12px 12px 35px;
+    width: 180px;
+    box-shadow: 0 15px 35px rgba(15,23,42,0.15);
+}
+
+.polaroid-img {
+    height: 210px;
+    background: linear-gradient(135deg, #a7f3d0, #059669);
+}
+
+.polaroid-1 {
+    left: 10px;
+    top: 25px;
+    transform: rotate(-8deg);
+}
+
+.polaroid-2 {
+    left: 150px;
+    top: 0;
+    transform: rotate(5deg);
+}
+
+.polaroid-2 .polaroid-img {
+    background: linear-gradient(135deg, #fef3c7, #f59e0b);
+}
+
+.polaroid-3 {
+    left: 290px;
+    top: 35px;
+    transform: rotate(9deg);
+}
+
+.polaroid-3 .polaroid-img {
+    background: linear-gradient(135deg, #dbeafe, #0ea5e9);
+}
+
+.polaroid-label {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
+
+
+/* Call to action band */
+.cta-band {
+    background: linear-gradient(135deg, #059669, #0d9488);
+    color: #fff;
+    text-align: center;
+    padding: 90px 20px;
+}
+
+.cta-tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    line-height: 1.1;
+    margin: 15px 0 30px;
+}
+
+.btn-cta {
+    display: inline-block;
+    background: #fff;
+    color: #047857;
+    padding: 13px 26px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.btn-cta:hover {
+    color: #047857;
+    transform: translateY(-1px);
+}
+
+
+/* Responsive */
+@media (max-width: 992px) {
+    .memories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .about-teaser {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .about-visual {
+        max-width: 500px;
+        margin: auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        min-height: 520px;
+    }
+    .hero-subtitle {
+        font-size: 16px;
+    }
+    .stats-bar {
+        margin: 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .stat-divider {
+        width: 60px;
+        height: 1px;
+    }
+    .section-header {
+        align-items: start;
+        gap: 15px;
+        flex-direction: column;
+    }
+    .section-title {
+        font-size: 34px;
+    }
+    .memories-grid {
+        grid-template-columns: 1fr;
+    }
+    .about-title {
+        font-size: 38px;
+    }
+    .about-visual {
+        transform: scale(0.8);
+        transform-origin: center;
+    }
+    .cta-title {
+        font-size: 38px;
+    }
+}

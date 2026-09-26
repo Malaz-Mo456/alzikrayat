@@ -1,0 +1,491 @@
+/* Login */
+
+.login-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 62px);
+    margin: 0;
+}
+
+/*  LEFT: FORM  */
+.login-form-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 40px 80px;
+    background: #fff;
+}
+
+.login-form-wrap {
+    width: 100%;
+    max-width: 420px;
+}
+
+.login-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 12px;
+    letter-spacing: -0.5px;
+}
+
+.login-sub {
+    color: #64748b;
+    font-size: 15px;
+    margin: 0 0 32px;
+    line-height: 1.5;
+}
+
+.last-login {
+    background: #ecfdf5;
+    border: 1px solid #d1fae5;
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #065f46;
+    font-size: 13px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.clock-icon {
+    font-size: 15px;
+}
+
+.login-error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #991b1b;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+.field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+}
+
+.field input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #f8fafc;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.field input:focus {
+    outline: none;
+    border-color: #0d9488;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.1);
+}
+
+.field input::placeholder {
+    color: #94a3b8;
+}
+
+.password-wrap {
+    position: relative;
+}
+
+.password-wrap input {
+    padding-right: 48px;
+}
+
+.toggle-pass {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    padding: 4px;
+}
+
+.toggle-pass:hover {
+    opacity: 1;
+}
+
+.btn-login {
+    width: 100%;
+    background: linear-gradient(135deg, #0d9488, #059669);
+    color: #fff;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    letter-spacing: 0.3px;
+    margin-top: 4px;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(13, 148, 136, 0.35);
+}
+
+.signup-line {
+    text-align: center;
+    margin-top: 28px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.signup-line a {
+    color: #0d9488;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.signup-line a:hover {
+    text-decoration: underline;
+}
+
+/* RIGHT: IMAGE  */
+.login-image-side {
+    position: relative;
+    background-image: url('/alzikrayat/public/images/login-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, 
+        rgba(13, 148, 136, 0.7) 0%, 
+        rgba(6, 78, 59, 0.85) 100%);
+}
+
+.image-content {
+    position: relative;
+    z-index: 2;
+    padding: 48px;
+    color: #fff;
+}
+
+.image-quote {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-style: italic;
+    line-height: 1.4;
+    margin: 0 0 20px;
+    font-weight: 400;
+    max-width: 400px;
+}
+
+.image-tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+}
+
+.image-tag span {
+    color: #5eead4;
+    margin: 0 6px;
+}
+
+.image-thumbs {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+    padding: 0 48px 32px;
+}
+
+.thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+}
+
+/*  RESPONSIVE  */
+@media (max-width: 992px) {
+    .login-split {
+        grid-template-columns: 1fr;
+    }
+
+    .login-image-side {
+        min-height: 400px;
+        order: -1;
+    }
+
+    .image-quote {
+        font-size: 20px;
+    }
+
+    .login-form-side {
+        padding: 60px 24px 40px;
+    }
+
+    .login-title {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 576px) {
+    .image-thumbs {
+        padding: 0 24px 24px;
+    }
+
+    .image-content {
+        padding: 32px 24px;
+    }
+
+    .thumb {
+        width: 48px;
+        height: 48px;
+    }
+}
+/* Register */
+
+.register-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 62px);
+    margin: 0;
+}
+
+
+
+.register-image-side {
+    position: relative;
+    background-image: url('/alzikrayat/public/images/register-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, 
+        rgba(13, 148, 136, 0.7) 0%, 
+        rgba(6, 78, 59, 0.85) 100%);
+}
+
+.image-content {
+    position: relative;
+    z-index: 2;
+    padding: 48px;
+    color: #fff;
+}
+
+.image-quote {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-style: italic;
+    line-height: 1.4;
+    margin: 0 0 20px;
+    max-width: 400px;
+    font-weight: 400;
+}
+
+.image-tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.image-tag span {
+    color: #5eead4;
+    margin: 0 6px;
+}
+
+
+
+
+.register-form-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 40px 80px;
+    background: #fff;
+    overflow-y: auto;
+}
+
+.register-form-wrap {
+    width: 100%;
+    max-width: 460px;
+}
+
+.register-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 12px;
+    letter-spacing: -0.5px;
+}
+
+.register-sub {
+    color: #64748b;
+    font-size: 15px;
+    margin: 0 0 32px;
+}
+
+.register-error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #991b1b;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.field {
+    margin-bottom: 16px;
+}
+
+.field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+}
+
+.opt {
+    color: #94a3b8;
+    font-weight: 400;
+    font-size: 11px;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #f8fafc;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: #0d9488;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.1);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: #94a3b8;
+}
+
+.btn-register-submit {
+    width: 100%;
+    background: linear-gradient(135deg, #0d9488, #059669);
+    color: #fff;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    margin-top: 8px;
+}
+
+.btn-register-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(13, 148, 136, 0.35);
+}
+
+.signin-line {
+    text-align: center;
+    margin-top: 24px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.signin-line a {
+    color: #0d9488;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.signin-line a:hover {
+    text-decoration: underline;
+}
+
+
+/*RESPONSIVE*/
+
+@media (max-width: 992px) {
+
+    .register-split {
+        grid-template-columns: 1fr;
+    }
+
+    .register-image-side {
+        min-height: 300px;
+        order: -1;
+    }
+
+    .register-form-side {
+        padding: 60px 24px 40px;
+    }
+
+    .register-title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .field-row {
+        grid-template-columns: 1fr;
+    }
+
+}
