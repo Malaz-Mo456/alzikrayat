@@ -5,15 +5,14 @@ require_once __DIR__ . '/../models/Comment.php';
 require_once __DIR__ . '/../models/Photo.php';
 
 /**
- * Handles comment-related requests.
+ * Handles adding comments to photos.
  */
 class CommentController extends Controller
 {
-  /**
-     * Stores a new comment for a photo.
-     *
-     * Checks the user login status and validates
-     * the comment before saving it to the database.
+    /**
+     * Adds a new comment to a photo.
+     * Normal form submissions return to the photo page.
+     * JavaScript requests receive the new comment as JSON.
      *
      * @return void
      */
@@ -21,28 +20,76 @@ class CommentController extends Controller
     {
         $this->requireLogin();
 
-        $photoId = filter_input(INPUT_POST, 'photo_id', FILTER_VALIDATE_INT);
-        $commentText = trim($_POST['comment'] ?? '');
+        $photoId = filter_input(
+            INPUT_POST,
+            'photo_id',
+            FILTER_VALIDATE_INT
+        );
+
+        $commentText = trim(
+            $_POST['comment'] ?? ''
+        );
+
+        $isAjax =
+            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH'])
+            === 'xmlhttprequest';
 
         if (!$photoId || $photoId < 1) {
-            echo "Invalid photo.";
+
+            if ($isAjax) {
+                $this->jsonResponse(
+                    false,
+                    ['message' => 'Invalid photo.'],
+                    400
+                );
+            }
+
+            echo 'Invalid photo.';
             return;
         }
 
         if ($commentText === '') {
-            echo "Comment is required.";
+
+            if ($isAjax) {
+                $this->jsonResponse(
+                    false,
+                    ['message' => 'Comment is required.'],
+                    400
+                );
+            }
+
+            echo 'Comment is required.';
             return;
         }
 
-        if (strlen($commentText) > 1000) {
-            echo "Comment is too long.";
+        if (mb_strlen($commentText) > 1000) {
+
+            if ($isAjax) {
+                $this->jsonResponse(
+                    false,
+                    ['message' => 'Comment is too long.'],
+                    400
+                );
+            }
+
+            echo 'Comment is too long.';
             return;
         }
 
         $photo = new Photo();
 
         if (!$photo->findById($photoId)) {
-            echo "Photo not found.";
+
+            if ($isAjax) {
+                $this->jsonResponse(
+                    false,
+                    ['message' => 'Photo not found.'],
+                    404
+                );
+            }
+
+            echo 'Photo not found.';
             return;
         }
 
@@ -54,6 +101,21 @@ class CommentController extends Controller
             $commentText
         );
 
-        $this->redirect('/alzikrayat/public/photo/' . $photoId);
+        if ($isAjax) {
+            $this->jsonResponse(
+                true,
+                [
+                    'comment' => [
+                        'first_name' => $_SESSION['first_name'],
+                        'comment' => $commentText,
+                        'date_time' => date('Y-m-d H:i:s')
+                    ]
+                ]
+            );
+        }
+
+        $this->redirect(
+            '/alzikrayat/public/photo/' . $photoId
+        );
     }
 }
